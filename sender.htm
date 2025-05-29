@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>CPR 鏡頭發送端</title>
+</head>
+<body>
+  <h2>教練端：鏡頭畫面發送中...</h2>
+  <video id="video" autoplay playsinline style="width: 100%; max-width: 600px;"></video>
+  <script>
+    const video = document.getElementById('video');
+    async function startCamera() {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: 'environment' },
+          audio: false
+        });
+        video.srcObject = stream;
+      } catch (err) {
+        alert('無法啟動鏡頭：' + err.message);
+      }
+    }
+    startCamera();
+  </script>
+</body>
+</html>
